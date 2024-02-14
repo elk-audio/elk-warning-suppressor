@@ -1,29 +1,26 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+This allows suppressing specific warnings for certain (third-party) includes,
+in a manner that is compiler-independent.
+It should work with Clang, GCC, and MSVC (MSVC is untested).
 
-### What is this repository for? ###
+Usage example:
+#include "warning_suppressor.h"
+ELK_PUSH_WARNING
+ELK_DISABLE_SHADOW_FIELD
+#include <JuceHeader.h>
+ELK_POP_WARNING
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+It's made combining some tips found online.
 
-### How do I get set up? ###
+From here:
+https://stackoverflow.com/questions/45762357/how-to-concatenate-strings-in-the-arguments-of-pragma/45783809#45783809
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+Combining this:
+https://software.codidact.com/posts/280528
 
-### Contribution guidelines ###
+With this:
+https://stackoverflow.com/questions/28166565/detect-gcc-as-opposed-to-msvc-clang-with-macro
 
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+And this:
+https://gcc.gnu.org/onlinedocs/gcc/Diagnostic-Pragmas.html

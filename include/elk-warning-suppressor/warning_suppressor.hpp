@@ -35,21 +35,8 @@
 
 #pragma once
 
-/**
- * From here:
- * https://stackoverflow.com/questions/45762357/how-to-concatenate-strings-in-the-arguments-of-pragma/45783809#45783809
- */
 #define DO_PRAGMA_(x) _Pragma (#x)
 #define DO_PRAGMA(x) DO_PRAGMA_(x)
-
-/**
- * Combining this:
- * https://software.codidact.com/posts/280528
- * With this:
- * https://stackoverflow.com/questions/28166565/detect-gcc-as-opposed-to-msvc-clang-with-macro
- * And this:
- * https://gcc.gnu.org/onlinedocs/gcc/Diagnostic-Pragmas.html
- */
 
 #if defined(__clang__)
 #define ELK_PUSH_WARNING DO_PRAGMA(clang diagnostic push)
