@@ -206,3 +206,12 @@
 #elif defined(_MSC_VER)
 #define ELK_DISABLE_REORDER DO_PRAGMA(warnings(disable : "-Wreorder")
 #endif
+
+// "-Wnullability-completeness"
+#if defined(__clang__)
+#define ELK_DISABLE_NULLABILITY_COMPLETENESS DO_PRAGMA(clang diagnostic ignored "-Wnullability-completeness")
+#elif defined(__GNUC__) || defined(__GNUG__)
+#define ELK_DISABLE_NULLABILITY_COMPLETENESS DO_PRAGMA(GCC diagnostic ignored "-Wnullability-completeness")
+#elif defined(_MSC_VER)
+#define ELK_DISABLE_NULLABILITY_COMPLETENESS DO_PRAGMA(warnings(disable : "-Wnullability-completeness")
+#endif
