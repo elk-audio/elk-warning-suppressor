@@ -180,6 +180,24 @@
 #define ELK_DISABLE_DEPRECATED_DECLARATIONS DO_PRAGMA(warnings(disable : "-Wdeprecated-declarations")
 #endif
 
+// "-Wdeprecated"
+#if defined(__clang__)
+#define ELK_DISABLE_DEPRECATED DO_PRAGMA(clang diagnostic ignored "-Wdeprecated")
+#elif defined(__GNUC__) || defined(__GNUG__)
+#define ELK_DISABLE_DEPRECATED DO_PRAGMA(GCC diagnostic ignored "-Wdeprecated")
+#elif defined(_MSC_VER)
+#define ELK_DISABLE_DEPRECATED DO_PRAGMA(warnings(disable : "-Wdeprecated")
+#endif
+
+// "-Wunknown-pragmas"
+#if defined(__clang__)
+#define ELK_DISABLE_UNKNOWN_PRAGMAS DO_PRAGMA(clang diagnostic ignored "-Wunknown-pragmas")
+#elif defined(__GNUC__) || defined(__GNUG__)
+#define ELK_DISABLE_UNKNOWN_PRAGMAS DO_PRAGMA(GCC diagnostic ignored "-Wunknown-pragmas")
+#elif defined(_MSC_VER)
+#define ELK_DISABLE_UNKNOWN_PRAGMAS DO_PRAGMA(warnings(disable : "-Wunknown-pragmas")
+#endif
+
 // "-Wreturn-type"
 #if defined(__clang__)
 #define ELK_DISABLE_RETURN_TYPE DO_PRAGMA(clang diagnostic ignored "-Wreturn-type")
