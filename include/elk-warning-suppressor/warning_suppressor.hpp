@@ -211,7 +211,7 @@
 #if defined(__clang__)
 #define ELK_DISABLE_NULLABILITY_COMPLETENESS DO_PRAGMA(clang diagnostic ignored "-Wnullability-completeness")
 #elif defined(__GNUC__) || defined(__GNUG__)
-#define ELK_DISABLE_NULLABILITY_COMPLETENESS DO_PRAGMA(GCC diagnostic ignored "-Wnullability-completeness")
+#define ELK_DISABLE_NULLABILITY_COMPLETENESS // Doesn't exist
 #elif defined(_MSC_VER)
 #define ELK_DISABLE_NULLABILITY_COMPLETENESS DO_PRAGMA(warnings(disable : "-Wnullability-completeness")
 #endif
