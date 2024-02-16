@@ -1,4 +1,4 @@
-#include <elk-warning-suppressor/warning_suppressor.hpp>
+#include "elk-warning-suppressor/warning_suppressor.hpp"
 
 int main()
 {
