@@ -60,7 +60,7 @@
 #elif defined(__GNUC__) || defined(__GNUG__)
 #define ELK_DISABLE_OVERLOADED_VIRTUAL DO_PRAGMA(GCC diagnostic ignored "-Woverloaded-virtual")
 #elif defined(_MSC_VER)
-#define ELK_DISABLE_EXTRA // TODO
+#define ELK_DISABLE_OVERLOADED_VIRTUAL // TODO
 #endif
 
 // "-Wextra"
