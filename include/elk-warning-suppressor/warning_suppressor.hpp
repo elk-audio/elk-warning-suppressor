@@ -240,45 +240,63 @@
 
 // "C4324 - structure was padded due to alignment specifier"
 #if defined(__clang__)
-#define ELK_DISABLE_ALIGNMENT_PADDING_WARNING // Doesn't exist
+#define ELK_DISABLE_ALIGNMENT_PADDING // Doesn't exist
 #elif defined(__GNUC__) || defined(__GNUG__)
-#define ELK_DISABLE_ALIGNMENT_PADDING_WARNING // Doesn't exist
+#define ELK_DISABLE_ALIGNMENT_PADDING // Doesn't exist
 #elif defined(_MSC_VER)
-#define ELK_DISABLE_ALIGNMENT_PADDING_WARNING DO_PRAGMA(warning(disable:4324))
+#define ELK_DISABLE_ALIGNMENT_PADDING DO_PRAGMA(warning(disable:4324))
 #endif
 
 // "C4706: assignment within conditional expression"
 #if defined(__clang__)
-#define ELK_DISABLE_ASSIGNMENT_WITHIN_CONDITIONAL_WARNING // Doesn't exist
+#define ELK_DISABLE_ASSIGNMENT_WITHIN_CONDITIONAL // Doesn't exist
 #elif defined(__GNUC__) || defined(__GNUG__)
-#define ELK_DISABLE_ASSIGNMENT_WITHIN_CONDITIONAL_WARNING // Doesn't exist
+#define ELK_DISABLE_ASSIGNMENT_WITHIN_CONDITIONAL // Doesn't exist
 #elif defined(_MSC_VER)
-#define ELK_DISABLE_ASSIGNMENT_WITHIN_CONDITIONAL_WARNING DO_PRAGMA(warning(disable:4706))
+#define ELK_DISABLE_ASSIGNMENT_WITHIN_CONDITIONAL DO_PRAGMA(warning(disable:4706))
 #endif
 
 // warning C5054: operator '|': deprecated between enumerations of different types
 #if defined(__clang__)
-#define ELK_DISABLE_DEPRECATED_BETWEEN_ENUMERATIONS_WARNING // Doesn't exist
+#define ELK_DISABLE_DEPRECATED_BETWEEN_ENUMERATIONS // Doesn't exist
 #elif defined(__GNUC__) || defined(__GNUG__)
-#define ELK_DISABLE_DEPRECATED_BETWEEN_ENUMERATIONS_WARNING // Doesn't exist
+#define ELK_DISABLE_DEPRECATED_BETWEEN_ENUMERATIONS // Doesn't exist
 #elif defined(_MSC_VER)
-#define ELK_DISABLE_DEPRECATED_BETWEEN_ENUMERATIONS_WARNING DO_PRAGMA(warning(disable:5054))
+#define ELK_DISABLE_DEPRECATED_BETWEEN_ENUMERATIONS DO_PRAGMA(warning(disable:5054))
 #endif
 
 // warning C4250: inherits via dominance
 #if defined(__clang__)
-#define ELK_DISABLE_DOMINANCE_INHERITANCE_WARNING // Doesn't exist
+#define ELK_DISABLE_DOMINANCE_INHERITANCE // Doesn't exist
 #elif defined(__GNUC__) || defined(__GNUG__)
-#define ELK_DISABLE_DOMINANCE_INHERITANCE_WARNING // Doesn't exist
+#define ELK_DISABLE_DOMINANCE_INHERITANCE // Doesn't exist
 #elif defined(_MSC_VER)
-#define ELK_DISABLE_DOMINANCE_INHERITANCE_WARNING DO_PRAGMA(warning(disable:4250))
+#define ELK_DISABLE_DOMINANCE_INHERITANCE DO_PRAGMA(warning(disable:4250))
 #endif
 
 // warning C4702: unreachable code
 #if defined(__clang__)
-#define ELK_DISABLE_UNREACHABLE_CODE_WARNING // Doesn't exist
+#define ELK_DISABLE_UNREACHABLE_CODE // Doesn't exist
 #elif defined(__GNUC__) || defined(__GNUG__)
-#define ELK_DISABLE_UNREACHABLE_CODE_WARNING // Doesn't exist
+#define ELK_DISABLE_UNREACHABLE_CODE // Doesn't exist
 #elif defined(_MSC_VER)
-#define ELK_DISABLE_UNREACHABLE_CODE_WARNING DO_PRAGMA(warning(disable:4702))
+#define ELK_DISABLE_UNREACHABLE_CODE DO_PRAGMA(warning(disable:4702))
+#endif
+
+// warning C4127: conditional expression is constant
+#if defined(__clang__)
+#define ELK_DISABLE_CONDITIONAL_EXPRESSION_IS_CONSTANT // Doesn't exist
+#elif defined(__GNUC__) || defined(__GNUG__)
+#define ELK_DISABLE_CONDITIONAL_EXPRESSION_IS_CONSTANT // Doesn't exist
+#elif defined(_MSC_VER)
+#define ELK_DISABLE_CONDITIONAL_EXPRESSION_IS_CONSTANT DO_PRAGMA(warning(disable:4127))
+#endif
+
+// warning C5232: in C++20 this comparison calls 'name' recursively
+#if defined(__clang__)
+#define ELK_COMPARISON_CALLS_NAME_RECURSIVELY // Doesn't exist
+#elif defined(__GNUC__) || defined(__GNUG__)
+#define ELK_COMPARISON_CALLS_NAME_RECURSIVELY // Doesn't exist
+#elif defined(_MSC_VER)
+#define ELK_COMPARISON_CALLS_NAME_RECURSIVELY DO_PRAGMA(warning(disable:5232))
 #endif
