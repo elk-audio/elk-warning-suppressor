@@ -35,7 +35,11 @@
 
 #pragma once
 
+#if defined(__clang__) || defined(__GNUC__) || defined(__GNUG__)
 #define DO_PRAGMA_(x) _Pragma (#x)
+#elif defined(_MSC_VER)
+#define DO_PRAGMA_(x) _Pragma (#x)
+#endif
 #define DO_PRAGMA(x) DO_PRAGMA_(x)
 
 #if defined(__clang__)
@@ -43,7 +47,7 @@
 #elif defined(__GNUC__) || defined(__GNUG__)
 #define ELK_PUSH_WARNING DO_PRAGMA(GCC diagnostic push)
 #elif defined(_MSC_VER)
-#define ELK_PUSH_WARNING // TODO
+#define ELK_PUSH_WARNING DO_PRAGMA(warning(push))
 #endif
 
 #if defined(__clang__)
@@ -51,7 +55,7 @@
 #elif defined(__GNUC__) || defined(__GNUG__)
 #define ELK_POP_WARNING DO_PRAGMA(GCC diagnostic pop)
 #elif defined(_MSC_VER)
-#define ELK_POP_WARNING // TODO
+#define ELK_POP_WARNING DO_PRAGMA(warning(pop))
 #endif
 
 // -Woverloaded-virtual
@@ -60,7 +64,7 @@
 #elif defined(__GNUC__) || defined(__GNUG__)
 #define ELK_DISABLE_OVERLOADED_VIRTUAL DO_PRAGMA(GCC diagnostic ignored "-Woverloaded-virtual")
 #elif defined(_MSC_VER)
-#define ELK_DISABLE_OVERLOADED_VIRTUAL // TODO
+#define ELK_DISABLE_OVERLOADED_VIRTUAL // DO_PRAGMA(warning(disable:))
 #endif
 
 // "-Wextra"
@@ -78,7 +82,7 @@
 #elif defined(__GNUC__) || defined(__GNUG__)
 #define ELK_DISABLE_UNUSED_PARAMETER DO_PRAGMA(GCC diagnostic ignored "-Wunused-parameter")
 #elif defined(_MSC_VER)
-#define ELK_DISABLE_UNUSED_PARAMETER // TODO
+#define ELK_DISABLE_UNUSED_PARAMETER DO_PRAGMA(warning(disable:4100))
 #endif
 
 // "-Wkeyword-macro"
@@ -186,7 +190,7 @@
 #elif defined(__GNUC__) || defined(__GNUG__)
 #define ELK_DISABLE_DEPRECATED DO_PRAGMA(GCC diagnostic ignored "-Wdeprecated")
 #elif defined(_MSC_VER)
-#define ELK_DISABLE_DEPRECATED // TODO
+#define ELK_DISABLE_DEPRECATED DO_PRAGMA(warning(disable:4996))
 #endif
 
 // "-Wunknown-pragmas"
@@ -232,4 +236,49 @@
 #define ELK_DISABLE_NULLABILITY_COMPLETENESS // Doesn't exist
 #elif defined(_MSC_VER)
 #define ELK_DISABLE_NULLABILITY_COMPLETENESS // TODO
+#endif
+
+// "C4324 - structure was padded due to alignment specifier"
+#if defined(__clang__)
+#define ELK_DISABLE_ALIGNMENT_PADDING_WARNING // Doesn't exist
+#elif defined(__GNUC__) || defined(__GNUG__)
+#define ELK_DISABLE_ALIGNMENT_PADDING_WARNING // Doesn't exist
+#elif defined(_MSC_VER)
+#define ELK_DISABLE_ALIGNMENT_PADDING_WARNING DO_PRAGMA(warning(disable:4324))
+#endif
+
+// "C4706: assignment within conditional expression"
+#if defined(__clang__)
+#define ELK_DISABLE_ASSIGNMENT_WITHIN_CONDITIONAL_WARNING // Doesn't exist
+#elif defined(__GNUC__) || defined(__GNUG__)
+#define ELK_DISABLE_ASSIGNMENT_WITHIN_CONDITIONAL_WARNING // Doesn't exist
+#elif defined(_MSC_VER)
+#define ELK_DISABLE_ASSIGNMENT_WITHIN_CONDITIONAL_WARNING DO_PRAGMA(warning(disable:4706))
+#endif
+
+// warning C5054: operator '|': deprecated between enumerations of different types
+#if defined(__clang__)
+#define ELK_DISABLE_DEPRECATED_BETWEEN_ENUMERATIONS_WARNING // Doesn't exist
+#elif defined(__GNUC__) || defined(__GNUG__)
+#define ELK_DISABLE_DEPRECATED_BETWEEN_ENUMERATIONS_WARNING // Doesn't exist
+#elif defined(_MSC_VER)
+#define ELK_DISABLE_DEPRECATED_BETWEEN_ENUMERATIONS_WARNING DO_PRAGMA(warning(disable:5054))
+#endif
+
+// warning C4250: inherits via dominance
+#if defined(__clang__)
+#define ELK_DISABLE_DOMINANCE_INHERITANCE_WARNING // Doesn't exist
+#elif defined(__GNUC__) || defined(__GNUG__)
+#define ELK_DISABLE_DOMINANCE_INHERITANCE_WARNING // Doesn't exist
+#elif defined(_MSC_VER)
+#define ELK_DISABLE_DOMINANCE_INHERITANCE_WARNING DO_PRAGMA(warning(disable:4250))
+#endif
+
+// warning C4702: unreachable code
+#if defined(__clang__)
+#define ELK_DISABLE_UNREACHABLE_CODE_WARNING // Doesn't exist
+#elif defined(__GNUC__) || defined(__GNUG__)
+#define ELK_DISABLE_UNREACHABLE_CODE_WARNING // Doesn't exist
+#elif defined(_MSC_VER)
+#define ELK_DISABLE_UNREACHABLE_CODE_WARNING DO_PRAGMA(warning(disable:4702))
 #endif
