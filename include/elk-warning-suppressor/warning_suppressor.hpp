@@ -294,9 +294,27 @@
 
 // warning C5232: in C++20 this comparison calls 'name' recursively
 #if defined(__clang__)
-#define ELK_COMPARISON_CALLS_NAME_RECURSIVELY // Doesn't exist
+#define ELK_DISABLE_COMPARISON_CALLS_NAME_RECURSIVELY // Doesn't exist
 #elif defined(__GNUC__) || defined(__GNUG__)
-#define ELK_COMPARISON_CALLS_NAME_RECURSIVELY // Doesn't exist
+#define ELK_DISABLE_COMPARISON_CALLS_NAME_RECURSIVELY // Doesn't exist
 #elif defined(_MSC_VER)
-#define ELK_COMPARISON_CALLS_NAME_RECURSIVELY DO_PRAGMA(warning(disable:5232))
+#define ELK_DISABLE_COMPARISON_CALLS_NAME_RECURSIVELY DO_PRAGMA(warning(disable:5232))
+#endif
+
+// warning C5204: class has virtual functions, but its trivial destructor is not virtual; instances of objects derived from this class may not be destructed correctly
+#if defined(__clang__)
+#define ELK_DISABLE_TRIVIAL_DESTRUCTOR_NOT_VIRTUAL // Doesn't exist
+#elif defined(__GNUC__) || defined(__GNUG__)
+#define ELK_DISABLE_TRIVIAL_DESTRUCTOR_NOT_VIRTUAL // Doesn't exist
+#elif defined(_MSC_VER)
+#define ELK_DISABLE_TRIVIAL_DESTRUCTOR_NOT_VIRTUAL DO_PRAGMA(warning(disable:5204))
+#endif
+
+// warning C4265: class has virtual functions, but its non-trivial destructor is not virtual; instances of objects derived from this class may not be destructed correctly
+#if defined(__clang__)
+#define ELK_DISABLE_NON_TRIVIAL_DESTRUCTOR_NOT_VIRTUAL // Doesn't exist
+#elif defined(__GNUC__) || defined(__GNUG__)
+#define ELK_DISABLE_NON_TRIVIAL_DESTRUCTOR_NOT_VIRTUAL // Doesn't exist
+#elif defined(_MSC_VER)
+#define ELK_DISABLE_NON_TRIVIAL_DESTRUCTOR_NOT_VIRTUAL DO_PRAGMA(warning(disable:4265))
 #endif
