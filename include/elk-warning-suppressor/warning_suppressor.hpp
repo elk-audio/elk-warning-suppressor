@@ -318,3 +318,21 @@
 #elif defined(_MSC_VER)
 #define ELK_DISABLE_NON_TRIVIAL_DESTRUCTOR_NOT_VIRTUAL DO_PRAGMA(warning(disable:4265))
 #endif
+
+// warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+#if defined(__clang__)
+#define ELK_DISABLE_CONVERSION_FROM_INT_TO_FLOAT // Doesn't exist
+#elif defined(__GNUC__) || defined(__GNUG__)
+#define ELK_DISABLE_CONVERSION_FROM_INT_TO_FLOAT // Doesn't exist
+#elif defined(_MSC_VER)
+#define ELK_DISABLE_CONVERSION_FROM_INT_TO_FLOAT DO_PRAGMA(warning(disable:4244))
+#endif
+
+// warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+#if defined(__clang__)
+#define ELK_DISABLE_CONVERSION_FROM_SIZE_T_TO_INT // Doesn't exist
+#elif defined(__GNUC__) || defined(__GNUG__)
+#define ELK_DISABLE_CONVERSION_FROM_SIZE_T_TO_INT // Doesn't exist
+#elif defined(_MSC_VER)
+#define ELK_DISABLE_CONVERSION_FROM_SIZE_T_TO_INT DO_PRAGMA(warning(disable:4267))
+#endif
