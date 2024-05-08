@@ -238,6 +238,24 @@
 #define ELK_DISABLE_NULLABILITY_COMPLETENESS // TODO
 #endif
 
+// "-Wswitch-enum"
+#if defined(__clang__)
+#define ELK_DISABLE_SWITCH_ENUM DO_PRAGMA(clang diagnostic ignored "-Wswitch-enum")
+#elif defined(__GNUC__) || defined(__GNUG__)
+#define ELK_DISABLE_SWITCH_ENUM // Doesn't exist
+#elif defined(_MSC_VER)
+#define ELK_DISABLE_SWITCH_ENUM // TODO
+#endif
+
+// "-Wfloat-equal"
+#if defined(__clang__)
+#define ELK_DISABLE_FLOAT_EQUAL DO_PRAGMA(clang diagnostic ignored "-Wfloat-equal")
+#elif defined(__GNUC__) || defined(__GNUG__)
+#define ELK_DISABLE_FLOAT_EQUAL // Doesn't exist
+#elif defined(_MSC_VER)
+#define ELK_DISABLE_FLOAT_EQUAL // TODO
+#endif
+
 // "C4324 - structure was padded due to alignment specifier"
 #if defined(__clang__)
 #define ELK_DISABLE_ALIGNMENT_PADDING // Doesn't exist
