@@ -35,9 +35,13 @@ add_library(${PROJECT_NAME} INTERFACE)
 add_library(elk::warningSuppressor ALIAS ${PROJECT_NAME})
 
 # Specify where the header-only library is
-target_include_directories( ${PROJECT_NAME} INTERFACE
+target_include_directories(${PROJECT_NAME} INTERFACE
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/elk-warning-suppressor>
     $<INSTALL_INTERFACE:include/elk-warning-suppressor>
+)
+
+set_target_properties(${PROJECT_NAME}
+    PROPERTIES EXPORT_NAME warningSuppressor
 )
 # Demo
 if (BUILD_DEMO)
@@ -54,26 +58,27 @@ install(TARGETS ${PROJECT_NAME}
         PUBLIC_HEADER DESTINATION include/elk-warning-suppressor
 )
 
-install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/elk-warning-suppressor DESTINATION include/elk-warning-suppressor)
-
-# Generate install config file
-install(EXPORT elkWarningSuppressorConfig
-        FILE elkWarningSuppressorConfig.cmake
-        DESTINATION lib/cmake/elk-warning-suppressor
-        NAMESPACE elk::
-)
+install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/elk-warning-suppressor DESTINATION include)
 
 # Generate config version file
 include(CMakePackageConfigHelpers)
 write_basic_package_version_file(
-        ${CMAKE_CURRENT_BINARY_DIR}/elkWarningSuppressorConfig.cmake
+        ${CMAKE_CURRENT_BINARY_DIR}/elk-warning-suppressorConfigVersion.cmake
         VERSION ${ELK_WARNING_SUPPRESSOR_VERSION_MAJOR}.${ELK_WARNING_SUPPRESSOR_VERSION_MINOR}.${ELK_WARNING_SUPPRESSOR_VERSION_REVISION}
         COMPATIBILITY SameMinorVersion
 )
 
+# Generate install config file
+install(EXPORT elkWarningSuppressorConfig
+        FILE elk-warning-suppressorConfig.cmake
+        DESTINATION lib/cmake/elk-warning-suppressor
+        NAMESPACE elk::
+)
+
+
 # Install config version file
 install(FILES
-        ${CMAKE_CURRENT_BINARY_DIR}/elkWarningSuppressorConfig.cmake
-        DESTINATION lib/cmake/elk-warning-suppressor
+    ${CMAKE_CURRENT_BINARY_DIR}/elk-warning-suppressorConfigVersion.cmake
+      DESTINATION lib/cmake/elk-warning-suppressor
 )
 
