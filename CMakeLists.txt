@@ -36,7 +36,7 @@ add_library(elk::warningSuppressor ALIAS ${PROJECT_NAME})
 
 # Specify where the header-only library is
 target_include_directories(${PROJECT_NAME} INTERFACE
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/elk-warning-suppressor>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include/elk-warning-suppressor>
 )
 
