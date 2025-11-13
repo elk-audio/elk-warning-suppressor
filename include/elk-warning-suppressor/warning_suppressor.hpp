@@ -256,6 +256,24 @@
 #define ELK_DISABLE_FLOAT_EQUAL // TODO
 #endif
 
+// "-Wnan-infinity-disabled"
+#if defined(__clang__)
+#define ELK_DISABLE_NAN_INFINITY_DISABLED DO_PRAGMA(clang diagnostic ignored "-Wnan-infinity-disabled")
+#elif defined(__GNUC__) || defined(__GNUG__)
+#define ELK_DISABLE_NAN_INFINITY_DISABLED // Doesn't exist
+#elif defined(_MSC_VER)
+#define ELK_DISABLE_NAN_INFINITY_DISABLED // TODO
+#endif
+
+// "-Wunused-private-field"
+#if defined(__clang__)
+#define ELK_DISABLE_UNUSED_PRIVATE_FIELD DO_PRAGMA(clang diagnostic ignored "-Wunused-private-field")
+#elif defined(__GNUC__) || defined(__GNUG__)
+#define ELK_DISABLE_UNUSED_PRIVATE_FIELD // Doesn't exist
+#elif defined(_MSC_VER)
+#define ELK_DISABLE_UNUSED_PRIVATE_FIELD // TODO
+#endif
+
 // "C4324 - structure was padded due to alignment specifier"
 #if defined(__clang__)
 #define ELK_DISABLE_ALIGNMENT_PADDING // Doesn't exist
