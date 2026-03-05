@@ -1,5 +1,4 @@
-# Requires at least CMake 3.5
-cmake_minimum_required (VERSION 3.5 FATAL_ERROR)
+cmake_minimum_required (VERSION 3.28)
 
 # Header-only library
 
